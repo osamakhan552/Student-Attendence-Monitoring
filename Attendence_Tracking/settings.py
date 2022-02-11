@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'attendence',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'drf_yasg',
+  
+
 ]
 
 MIDDLEWARE = [
@@ -67,6 +73,15 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+       
+    ],
+}
 
 WSGI_APPLICATION = 'Attendence_Tracking.wsgi.application'
 
@@ -100,7 +115,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
