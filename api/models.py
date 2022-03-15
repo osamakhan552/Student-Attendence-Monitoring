@@ -42,6 +42,7 @@ class student(models.Model):
     birth_date = models.DateField(default=datetime.now)
     div = models.CharField(max_length=5,null=True)
     roll =  models.CharField(max_length=100,null=True)
+    # batch = models.ForeignKey(batch,on_delete=CASCADE)
    
     
     def __str__(self):
@@ -74,28 +75,28 @@ standard_choice =(
     ("10", "10th"),
 )
 
-class batch(models.Model):
-    year = models.CharField(max_length=20,null=True)
-    std = models.CharField(
-        max_length = 20,
-        choices = standard_choice,
-        default = '1'
-        )
-    teacher = models.ForeignKey(teacher,on_delete=CASCADE)
-    class Meta:
-        unique_together = ('year', 'std')
+# class batch(models.Model):
+#     year = models.CharField(max_length=20,null=True)
+#     std = models.CharField(
+#         max_length = 20,
+#         choices = standard_choice,
+#         default = '1'
+#         )
+#     teacher = models.ForeignKey(teacher,on_delete=CASCADE)
+#     class Meta:
+#         unique_together = ('year', 'std')
 
 
 
-class attendance(models.Model):
-    attendDate = models.DateField(default=datetime.now)
-    status = models.BooleanField(default=True)
-    batch = models.ForeignKey(batch,on_delete=CASCADE)
+# class attendance(models.Model):
+#     attendDate = models.DateField(default=datetime.now)
+#     status = models.BooleanField(default=True)
+#     batch = models.ForeignKey(batch,on_delete=CASCADE)
 
 
-class attendanceMapping(models.Model):
-    student = models.ForeignKey(student,on_delete=CASCADE)
-    attendance = models.ForeignKey(attendance,on_delete=CASCADE)
+# class attendanceMapping(models.Model):
+#     student = models.ForeignKey(student,on_delete=CASCADE)
+#     attendance = models.ForeignKey(attendance,on_delete=CASCADE)
 
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender,instance=None,created = False,**kwargs):
