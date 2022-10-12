@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from .serializers import UserSerializer,studentSerializer,teacherSerializer
 from .models import student,User,teacher
-
+from django.core import *
 
 
 # Create your views here.
