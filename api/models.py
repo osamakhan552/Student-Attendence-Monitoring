@@ -17,6 +17,12 @@ class roles(models.Model):
     def __str__(self):
         return self.roleName
 
+class books(models.Model):
+  bookId = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False,unique=True)
+  bookName = models.CharField(max_length = 100)
+
+
+
 class User(AbstractUser):
     email = models.EmailField(_('email address'))
     ID =  models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)
@@ -71,3 +77,4 @@ def create_auth_token(sender,instance=None,created = False,**kwargs):
             # arg1 = instance.username
             # arg2 = 'Khan'
             # start(arg1,arg2,str(token))
+
