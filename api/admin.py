@@ -3,13 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from .models import User,roles,student,teacher,batch
+from .models import User,roles,student,teacher
 
 
 
 
-class batchAdmin(admin.ModelAdmin):
-      list_display = ['year','std']
+# class batchAdmin(admin.ModelAdmin):
+#       list_display = ['year','std']
       
 class teacherAdmin(admin.ModelAdmin):
       list_display = ['qualification']
@@ -49,6 +49,6 @@ admin.site.register(User, UserAdmin)
 admin.site.register(roles,rolesAdmin)
 admin.site.register(student,studentAdmin)
 admin.site.register(teacher,teacherAdmin)
-admin.site.register(batch,batchAdmin)
+# admin.site.register(batch,batchAdmin)
 
 

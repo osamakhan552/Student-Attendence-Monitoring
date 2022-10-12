@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-aqzr%2iu5_cw9^()1yq1!pyc$6b!w(q%h_eive18$!ou5+usb(
 # SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'api.User'
 
@@ -55,6 +55,7 @@ SCHEDULER_DEFAULT = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -98,12 +99,23 @@ WSGI_APPLICATION = 'Attendence_Tracking.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+     "default": {
+         "ENGINE": "django.db.backends.postgresql",
+         "NAME": "studentdb",
+         "USER": "itsosama@student-relecloud-db",
+         "PASSWORD": "root123@",
+         "HOST": "student-relecloud-db.postgres.database.azure.com",
+         "PORT": "5432"
+     },
+ }
 
 
 # Password validation
@@ -155,6 +167,9 @@ STATIC_ROOT = os.path.join(BASE_DIR,'assets')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
