@@ -19,7 +19,9 @@ class roles(models.Model):
     roleName = models.CharField(max_length=10)
     def __str__(self):
         return self.roleName
-
+class books(models.Model):
+  bookId = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False,unique=True)
+  bookName = models.CharField(max_length = 100)
 
 
 class User(AbstractUser):
